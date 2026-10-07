@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechVision Malawi - Web Solutions for Businesses</title>
+<meta name="description" content="TechVision Malawi builds Websites, Web Apps & E-commerce for businesses. Get a free quote today.">
+<style>
+  :root{
+    --blue: #0A2540;
+    --orange: #FF6B00;
+    --light: #F5F7FA;
+    --white: #ffffff;
+    --text: #1A1A1A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family: 'Segoe UI', Roboto, sans-serif;}
+  body{background:var(--white); color:var(--text); line-height:1.6;}
+  a{text-decoration:none;color:inherit;}
+  .container{width:90%;max-width:1200px;margin:0 auto;}
+  .btn{background:var(--orange);color:var(--white);padding:14px 28px;border-radius:8px;font-weight:600;border:none;cursor:pointer;transition:0.3s;display:inline-block;}
+  .btn:hover{background:#e55f00;transform:translateY(-2px);}
+  .btn-outline{background:transparent;border:2px solid var(--white);color:var(--white);}
+  .btn-airtel{background:#ED1C24;color:white;}
+  .btn-airtel:hover{background:#c4171e;}
+ 
+  /* Header */
+  header{background:var(--blue);color:var(--white);padding:16px 0;position:sticky;top:0;z-index:100;}
+  nav{display:flex;justify-content:space-between;align-items:center;}
+  .logo{font-size:1.5rem;font-weight:800;}
+  .logo span{color:var(--orange);}
+  nav ul{display:flex;list-style:none;gap:25px;}
+  nav ul li a{font-weight:500;transition:0.2s;}
+  nav ul li a:hover{color:var(--orange);}
+
+  /* Hamburger button */
+  .menu-btn{
+    display:none;
+    background:none;
+    border:none;
+    color:white;
+    font-size:1.8rem;
+    cursor:pointer;
+    padding:4px 8px;
+  }
+
+  /* Hero */
+  .hero{background:linear-gradient(135deg, var(--blue) 0%, #123A63 100%);color:var(--white);padding:100px 0;text-align:center;}
+  .hero h1{font-size:2.8rem;margin-bottom:15px;}
+  .hero p{font-size:1.2rem;margin-bottom:30px;opacity:0.9;}
+  .hero-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;}
+ 
+  /* Sections */
+  section{padding:80px 0;}
+  .section-title{text-align:center;font-size:2rem;margin-bottom:50px;color:var(--blue);}
+ 
+  /* Services */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
+  .card{background:var(--light);padding:30px;border-radius:12px;border-top:4px solid var(--orange);}
+  .card h3{color:var(--blue);margin-bottom:10px;}
+ 
+  /* Form */
+  .form-wrapper{background:var(--light);padding:40px;border-radius:12px;max-width:700px;margin:0 auto;}
+  .form-group{margin-bottom:20px;}
+  .form-group label{display:block;margin-bottom:8px;font-weight:600;}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;}
+ 
+  /* Portal Preview */
+  .portal{background:var(--blue);color:var(--white);border-radius:12px;padding:30px;}
+  .progress-bar{background:#2A4A70;height:10px;border-radius:5px;margin:10px 0;}
+  .progress{height:10px;background:var(--orange);width:70%;border-radius:5px;}
+  .invoice{display:flex;justify-content:space-between;align-items:center;background:#2A4A70;padding:15px;border-radius:8px;margin:10px 0;flex-wrap:wrap;gap:10px;}
+ 
+  /* Footer */
+  footer{background:var(--blue);color:var(--white);text-align:center;padding:30px 0;margin-top:50px;}
+ 
+  /* WhatsApp Float */
+  .whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:99;}
+
+  /* ========== AIRTEL MONEY MODAL ========== */
+  .modal-overlay{
+    display:none;
+    position:fixed;
+    top:0;left:0;right:0;bottom:0;
+    background:rgba(0,0,0,0.7);
+    z-index:200;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal{
+    background:white;
+    border-radius:16px;
+    max-width:420px;
+    width:100%;
+    padding:28px 24px;
+    text-align:center;
+    position:relative;
+    animation:slideUp 0.3s ease;
+  }
+  @keyframes slideUp{
+    from{transform:translateY(30px);opacity:0;}
+    to{transform:translateY(0);opacity:1;}
+  }
+  .modal h3{
+    color:var(--blue);
+    font-size:1.4rem;
+    margin-bottom:8px;
+  }
+  .modal .airtel-logo{
+    font-size:1.1rem;
+    font-weight:700;
+    color:#ED1C24;
+    margin-bottom:20px;
+  }
+  .payment-number{
+    background:#F5F7FA;
+    border:2px dashed #ED1C24;
+    border-radius:12px;
+    padding:18px;
+    margin:20px 0;
+  }
+  .payment-number .label{
+    font-size:0.9rem;
+    color:#666;
+    margin-bottom:6px;
+  }
+  .payment-number .number{
+    font-size:1.6rem;
+    font-weight:800;
+    color:var(--blue);
+    letter-spacing:1px;
+  }
+  .steps{
+    text-align:left;
+    margin:20px 0;
+    padding:0 10px;
+  }
+  .steps li{
+    margin-bottom:10px;
+    font-size:0.95rem;
+    color:#333;
+  }
+  .modal-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:20px;
+  }
+  .modal-close{
+    position:absolute;
+    top:12px;
+    right:16px;
+    background:none;
+    border:none;
+    font-size:1.5rem;
+    cursor:pointer;
+    color:#999;
+  }
+  .modal-close:hover{color:#333;}
+ 
+  /* ========== MOBILE STYLES ========== */
+  @media(max-width:768px){
+    .menu-btn{display:block;}
+
+    nav ul{
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:var(--blue);
+      flex-direction:column;
+      gap:0;
+      padding:10px 0;
+      box-shadow:0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    nav ul.show{
+      display:flex;
+    }
+
+    nav ul li{
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    nav ul li a{
+      display:block;
+      padding:16px 20px;
+      font-size:1.1rem;
+    }
+
+    nav ul li a:hover{
+      background:rgba(255,255,255,0.1);
+      color:var(--orange);
+    }
+
+    .hero h1{font-size:2rem;}
+  }
+
+  @media(max-width:600px){
+    .hero-buttons{
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+    }
+    .hero .btn,.hero .btn-outline{
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      width: 80%;
+      max-width: 260px;
+      text-align:center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Tech<span>Vision</span> Malawi</div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+      <ul id="navMenu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#quote">Get Quote</a></li>
+        <li><a href="#portal">Client Portal</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <h1>Building Malawi’s Digital Future</h1>
+    <p>Websites, Web Apps, E-commerce & Digital Solutions for Businesses</p>
+    <div class="hero-buttons">
+      <a href="#quote" class="btn">Get a Free Quote</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-grid">
+      <div class="card">
+        <h3>Web Design</h3>
+        <p>Modern, fast, mobile-first websites that turn visitors into customers.</p>
+      </div>
+      <div class="card">
+        <h3>Web Apps</h3>
+        <p>Custom systems, dashboards, and client portals to automate your business.</p>
+      </div>
+      <div class="card">
+        <h3>E-commerce</h3>
+        <p>Sell online with Airtel Money & MPamba integration for Malawi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST QUOTE FORM -->
+<section id="quote" style="background:var(--light);">
+  <div class="container">
+    <h2 class="section-title">Request a Quote</h2>
+    <p style="text-align:center;margin-bottom:20px;">We reply within 24 hours</p>
+    <div class="form-wrapper">
+      <form action="https://formsubmit.co/blessingshara010@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New Quote Request - TechVision Malawi">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" name="company">
+        </div>
+        <div class="form-group">
+          <label>Service Needed</label>
+          <select name="service" required>
+            <option>Website Design</option>
+            <option>Web App</option>
+            <option>E-commerce</option>
+            <option>SEO & Maintenance</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Budget Range (MWK)</label>
+          <input type="text" name="budget" placeholder="e.g. K500,000 - K2,000,000">
+        </div>
+        <div class="form-group">
+          <label>Project Details</label>
+          <textarea name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn" style="width:100%;">Send Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT PORTAL PREVIEW -->
+<section id="portal">
+  <div class="container">
+    <h2 class="section-title">Client Portal</h2>
+    <div class="portal">
+      <h3>Welcome back, Client</h3>
+      <p>Project: TechVision Website</p>
+      <div class="progress-bar"><div class="progress"></div></div>
+      <p>70% Complete</p>
+     
+      <h4 style="margin-top:20px;">Invoices</h4>
+      <div class="invoice">
+        <span>Deposit Invoice #102</span>
+        <button class="btn btn-airtel" onclick="openAirtelPay()" style="padding:10px 18px;">
+          Pay with Airtel Money
+        </button>
+      </div>
+     
+      <h4 style="margin-top:20px;">Downloads</h4>
+      <p>Logo Files | Source Code | Contract</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--light);">
+  <div class="container" style="text-align:center;">
+    <h2 class="section-title">Let’s Talk</h2>
+    <p>Email: info@techvision.mw | WhatsApp: +265 991 806 838</p>
+    <p>Location: Lilongwe, Malawi</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 TechVision Malawi. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Button -->
+<a href="https://wa.me/265991806838" class="whatsapp" target="_blank">💬</a>
+
+<!-- ========== AIRTEL MONEY PAYMENT MODAL ========== -->
+<div class="modal-overlay" id="airtelModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAirtelPay()">×</button>
+    
+    <h3>Pay with Airtel Money</h3>
+    <div class="airtel-logo">Airtel Money</div>
+
+    <div class="payment-number">
+      <div class="label">Send money to this number:</div>
+      <div class="number">0991 806 838</div>
+    </div>
+
+    <ol class="steps">
+      <li>Open your <strong>Airtel Money</strong> app or dial <strong>*137#</strong></li>
+      <li>Choose <strong>Send Money</strong></li>
+      <li>Enter number: <strong>0991 806 838</strong></li>
+      <li>Enter the amount and your <strong>PIN</strong></li>
+      <li>After payment, send us the Transaction ID on WhatsApp</li>
+    </ol>
+
+    <div class="modal-buttons">
+      <a href="https://wa.me/265991806838?text=Hello%20TechVision%20Malawi%2C%20I%20have%20paid%20via%20Airtel%20Money.%20Transaction%20ID%3A%20" 
+         class="btn btn-airtel" target="_blank" style="width:100%;">
+        Confirm Payment on WhatsApp
+      </a>
+      <button class="btn" onclick="closeAirtelPay()" style="background:#eee;color:#333;width:100%;">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navMenu = document.getElementById('navMenu');
+
+  menuBtn.addEventListener('click', function() {
+    navMenu.classList.toggle('show');
+    if (navMenu.classList.contains('show')) {
+      menuBtn.textContent = '✕';
+    } else {
+      menuBtn.textContent = '☰';
+    }
+  });
+
+  // Close menu when a link is clicked
+  const navLinks = navMenu.querySelectorAll('a');
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      navMenu.classList.remove('show');
+      menuBtn.textContent = '☰';
+    });
+  });
+
+  // Airtel Money payment modal
+  function openAirtelPay() {
+    document.getElementById('airtelModal').classList.add('show');
+  }
+
+  function closeAirtelPay() {
+    document.getElementById('airtelModal').classList.remove('show');
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('airtelModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeAirtelPay();
+    }
+  });
+</script>
+</body>
+</html>
