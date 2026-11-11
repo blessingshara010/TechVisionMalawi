@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TechVision Malawi - Web Solutions for Businesses</title>
 <meta name="description" content="TechVision Malawi builds Websites, Web Apps & E-commerce for businesses. Get a free quote today.">
+
+<!-- PWA / Install as App -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0A2540">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TechVision">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+
 <style>
   :root{
     --blue: #0A2540;
@@ -321,9 +333,14 @@
      
       <h4 style="margin-top:20px;">Invoices</h4>
       <div class="invoice">
+        <span>Deposit Invoice #102</span>
         <button class="btn btn-airtel" onclick="openAirtelPay()" style="padding:10px 18px;">
           Pay with Airtel Money
         </button>
+      </div>
+     
+      <h4 style="margin-top:20px;">Downloads</h4>
+      <p>Logo Files | Source Code | Contract</p>
     </div>
   </div>
 </section>
@@ -332,7 +349,7 @@
 <section id="contact" style="background:var(--light);">
   <div class="container" style="text-align:center;">
     <h2 class="section-title">Let’s Talk</h2>
-    <p>Email: techvisionmalawi@gmail.com | WhatsApp: +265 991 806 838</p>
+    <p>Email: info@techvision.mw | WhatsApp: +265 991 806 838</p>
     <p>Location: Lilongwe, Malawi</p>
   </div>
 </section>
@@ -360,7 +377,7 @@
     </div>
 
     <ol class="steps">
-      <li>Open your <strong>Airtel Money</strong> app or dial <strong>*211#</strong></li>
+      <li>Open your <strong>Airtel Money</strong> app or dial <strong>*137#</strong></li>
       <li>Choose <strong>Send Money</strong></li>
       <li>Enter number: <strong>0991 806 838</strong></li>
       <li>Enter the amount and your <strong>PIN</strong></li>
@@ -417,6 +434,19 @@
       closeAirtelPay();
     }
   });
+
+  // Register service worker so the site can be installed as an app
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('./sw.js')
+        .then(function(reg) {
+          console.log('App ready to install');
+        })
+        .catch(function(err) {
+          console.log('Service worker error:', err);
+        });
+    });
+  }
 </script>
 </body>
 </html>
